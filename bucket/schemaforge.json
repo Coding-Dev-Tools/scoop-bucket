@@ -1,0 +1,14 @@
+{
+    "version": "0.1.0",
+    "description": "Bidirectional ORM schema converter — convert between SQL DDL, Prisma, Drizzle, TypeORM, and Django models with zero-loss roundtripping",
+    "homepage": "https://github.com/Coding-Dev-Tools/schemaforge",
+    "license": "MIT",
+    "depends": "python",
+    "url": "https://github.com/Coding-Dev-Tools/schemaforge/archive/refs/tags/v0.1.0.tar.gz",
+    "hash": "fb83df245654c33e28f075bce99536f039f399efeb74995c069545ec0a85e799",
+    "post_install": "pip install \"$dir\" 2>$null",
+    "bin": "schemaforge.exe",
+    "checkver": {
+        "github": "https://github.com/Coding-Dev-Tools/schemaforge"
+    }
+}
