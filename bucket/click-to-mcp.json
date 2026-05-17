@@ -1,0 +1,14 @@
+{
+    "version": "0.5.4",
+    "description": "Convert any Python Click/Typer CLI into an MCP server automatically",
+    "homepage": "https://github.com/Coding-Dev-Tools/click-to-mcp",
+    "license": "MIT",
+    "depends": "python",
+    "url": "https://github.com/Coding-Dev-Tools/click-to-mcp/archive/refs/tags/v0.5.4.tar.gz",
+    "hash": "d5558cd419c8d46bdc958064cb97f963d1ea793866414c025906ec15033512ed",
+    "post_install": "pip install \"$dir\" 2>$null",
+    "bin": "click-to-mcp.exe",
+    "checkver": {
+        "github": "https://github.com/Coding-Dev-Tools/click-to-mcp"
+    }
+}
