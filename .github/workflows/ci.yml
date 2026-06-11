@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - shell: pwsh
+        run: |
+          Get-ChildItem bucket -Filter *.json | ForEach-Object {
+            Write-Host "Validating $($_.Name)"
+            Get-Content -Raw $_.FullName | ConvertFrom-Json | Out-Null
+          }
