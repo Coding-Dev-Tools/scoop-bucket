@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "description": "CLI tool for API key and JWT lifecycle management with encrypted local store",
+    "homepage": "https://github.com/Coding-Dev-Tools/apiauth",
+    "license": "MIT",
+    "depends": "python",
+    "url": "https://github.com/Coding-Dev-Tools/apiauth/archive/refs/tags/v0.2.0.tar.gz",
+    "hash": "TODO-update-after-computing-sha256-of-tag-v0.2.0",
+    "post_install": "pip install \"$dir\"",
+    "bin": "apiauth.exe",
+    "checkver": {
+        "github": "https://github.com/Coding-Dev-Tools/apiauth"
+    }
+}

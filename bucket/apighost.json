@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "description": "CLI tool that reads an OpenAPI spec and spawns a realistic mock API server with VCR cassette recording and replay",
+    "homepage": "https://github.com/Coding-Dev-Tools/apighost",
+    "license": "MIT",
+    "depends": "python",
+    "url": "https://github.com/Coding-Dev-Tools/apighost/archive/refs/tags/v0.2.0.tar.gz",
+    "hash": "TODO-push-tag-v0.2.0-then-update-sha256",
+    "post_install": "pip install \"$dir\"",
+    "bin": "apighost.exe",
+    "checkver": {
+        "github": "https://github.com/Coding-Dev-Tools/apighost"
+    }
+}

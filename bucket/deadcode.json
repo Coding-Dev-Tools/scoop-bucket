@@ -6,7 +6,7 @@
     "depends": "python",
     "url": "https://github.com/Coding-Dev-Tools/deadcode/archive/refs/tags/v0.1.1.tar.gz",
     "hash": "52cc212289b607760dbac702508e5a583d0d4ff2f5705f9f08e0d949264d068d",
-    "post_install": "pip install \"$dir\" 2>$null",
+    "post_install": "pip install \"$dir\"",
     "bin": "deadcode.exe",
     "checkver": {
         "github": "https://github.com/Coding-Dev-Tools/deadcode"
