@@ -5,7 +5,7 @@
     "license": "MIT",
     "depends": "python",
     "url": "https://github.com/Coding-Dev-Tools/datamorph/archive/refs/tags/v0.1.1.tar.gz",
-    "hash": "TODO-update-after-pushing-tag-v0.1.1",
+    "hash": "51ac1dc36ef709e8fde62d4153251995ec616ea1837bffd0b12bbb483fcc20f7",
     "post_install": "pip install \"$dir\"",
     "bin": "datamorph.exe",
     "checkver": {

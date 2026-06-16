@@ -5,7 +5,7 @@
     "license": "MIT",
     "depends": "python",
     "url": "https://github.com/Coding-Dev-Tools/apighost/archive/refs/tags/v0.2.0.tar.gz",
-    "hash": "TODO-push-tag-v0.2.0-then-update-sha256",
+    "hash": "b4d8cddb7f61a4cce270f2ed46016e96cec6a85a05adc36bd9f237da2094180e",
     "post_install": "pip install \"$dir\"",
     "bin": "apighost.exe",
     "checkver": {

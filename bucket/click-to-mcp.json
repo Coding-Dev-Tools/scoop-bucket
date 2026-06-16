@@ -5,7 +5,7 @@
     "license": "MIT",
     "depends": "python",
     "url": "https://github.com/Coding-Dev-Tools/click-to-mcp/archive/refs/tags/v0.5.0.tar.gz",
-    "hash": "TODO-update-after-pushing-tag-v0.5.0",
+    "hash": "ef946c5a1660df147dcc65548d3dffa364b50cd8f903ab8696a51b5be6aeb26e",
     "post_install": "pip install \"$dir\"",
     "bin": "click-to-mcp.exe",
     "checkver": {

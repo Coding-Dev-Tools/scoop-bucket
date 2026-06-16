@@ -5,7 +5,7 @@
     "license": "MIT",
     "depends": "python",
     "url": "https://github.com/Coding-Dev-Tools/json2sql/archive/refs/tags/v0.1.1.tar.gz",
-    "hash": "TODO-update-after-pushing-tag-v0.1.1",
+    "hash": "619332661f9bdd6ec0c0a989ab13bc7ac9fb3ede059ac4bb39a59e07bc85befb",
     "post_install": "pip install \"$dir\"",
     "bin": "json2sql.exe",
     "checkver": {
