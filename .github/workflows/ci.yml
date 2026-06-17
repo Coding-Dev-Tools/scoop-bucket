@@ -17,3 +17,15 @@ jobs:
             Write-Host "Validating $($_.Name)"
             Get-Content -Raw $_.FullName | ConvertFrom-Json | Out-Null
           }
+
+  placeholder-hash-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fail on placeholder hash
+        run: |
+          if grep -rEl 'TODO|"hash": "0{64}"' bucket/; then
+            echo "::error::Manifest(s) above still contain a placeholder hash — installs will fail. Recompute from the real release tarball before merging."
+            exit 1
+          fi
+          echo "No placeholder hashes found."
