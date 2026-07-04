@@ -1,6 +1,7 @@
 {
+    "name": "api-contract-guardian",
     "version": "0.1.0",
-    "description": "Monitor OpenAPI schema diffs, detect breaking changes, generate migration guides",
+    "description": "Monitor OpenAPI schema diffs, detect breaking changes",
     "homepage": "https://github.com/Coding-Dev-Tools/api-contract-guardian",
     "license": "MIT",
     "depends": "python",
