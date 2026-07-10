@@ -5,7 +5,7 @@
     "license": "MIT",
     "depends": "python",
     "url": "https://github.com/Coding-Dev-Tools/apiauth/archive/refs/tags/v0.2.0.tar.gz",
-    "hash": "e9945fb0c355337d44d7a88795594e85187b0616120d5953b7b995447d13df73",
+    "hash": "88ab13398ff83060a6cbd96fa6f19614ec6ee24e8d9884a02ab4bbf13ad48e8e",
     "post_install": "pip install \"$dir\"",
     "bin": "apiauth.exe",
     "checkver": {
