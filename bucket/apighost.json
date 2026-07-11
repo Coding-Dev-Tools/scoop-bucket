@@ -10,5 +10,6 @@
     "bin": "apighost.exe",
     "checkver": {
         "github": "https://github.com/Coding-Dev-Tools/apighost"
-    }
+    },
+    "name": "apighost"
 }

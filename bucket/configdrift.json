@@ -10,5 +10,6 @@
     "bin": "configdrift.exe",
     "checkver": {
         "github": "https://github.com/Coding-Dev-Tools/configdrift"
-    }
+    },
+    "name": "configdrift"
 }

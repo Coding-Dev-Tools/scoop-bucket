@@ -10,5 +10,6 @@
     "bin": "datamorph.exe",
     "checkver": {
         "github": "https://github.com/Coding-Dev-Tools/datamorph"
-    }
+    },
+    "name": "datamorph"
 }

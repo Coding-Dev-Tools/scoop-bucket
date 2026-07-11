@@ -10,5 +10,6 @@
     "bin": "deadcode.exe",
     "checkver": {
         "github": "https://github.com/Coding-Dev-Tools/deadcode"
-    }
+    },
+    "name": "deadcode"
 }

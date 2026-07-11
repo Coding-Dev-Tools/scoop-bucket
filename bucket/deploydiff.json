@@ -10,5 +10,6 @@
     "bin": "deploydiff.exe",
     "checkver": {
         "github": "https://github.com/Coding-Dev-Tools/deploydiff"
-    }
+    },
+    "name": "deploydiff"
 }

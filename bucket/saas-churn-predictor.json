@@ -10,5 +10,6 @@
     "bin": "churn-predictor.exe",
     "checkver": {
         "github": "https://github.com/Coding-Dev-Tools/SaaS-Churn-Predictor"
-    }
+    },
+    "name": "saas-churn-predictor"
 }

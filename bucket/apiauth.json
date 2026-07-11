@@ -10,5 +10,6 @@
     "bin": "apiauth.exe",
     "checkver": {
         "github": "https://github.com/Coding-Dev-Tools/apiauth"
-    }
+    },
+    "name": "apiauth"
 }

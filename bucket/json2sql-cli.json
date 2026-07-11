@@ -10,5 +10,6 @@
     "bin": "json2sql.exe",
     "checkver": {
         "github": "https://github.com/Coding-Dev-Tools/json2sql"
-    }
+    },
+    "name": "json2sql-cli"
 }
