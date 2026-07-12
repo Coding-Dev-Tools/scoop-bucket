@@ -81,3 +81,13 @@ jobs:
             exit 1
           fi
           echo "No placeholder hashes found in ${#manifests[@]} manifest(s)."
+
+  validate-python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Validate manifests (cross-platform)
+        run: python scripts/validate_manifests.py
