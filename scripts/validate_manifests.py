@@ -89,6 +89,20 @@ def problems_for(rel, data):
                     f"{rel}: version '{version}' does not match url tag '{tag}'"
                 )
 
+    # autoupdate must accompany checkver so `scoop update` can self-apply new
+    # versions; a manifest with checkver but no autoupdate silently never updates.
+    if "checkver" in data and "autoupdate" not in data:
+        probs.append(
+            f"{rel}: has 'checkver' but missing 'autoupdate' (scoop cannot self-update)"
+        )
+    if "autoupdate" in data:
+        au = data["autoupdate"]
+        au_url = au.get("url") if isinstance(au, dict) else None
+        if not au_url or "$version" not in au_url:
+            probs.append(
+                f"{rel}: autoupdate.url must be a version-template containing '$version'"
+            )
+
     return probs
 
 

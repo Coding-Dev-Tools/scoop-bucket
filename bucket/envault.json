@@ -11,5 +11,8 @@
     "checkver": {
         "github": "https://github.com/Coding-Dev-Tools/envault"
     },
+    "autoupdate": {
+        "url": "https://github.com/Coding-Dev-Tools/envault/archive/refs/tags/v$version.tar.gz"
+    },
     "name": "envault"
 }

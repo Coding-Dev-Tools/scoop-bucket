@@ -11,5 +11,8 @@
     "checkver": {
         "github": "https://github.com/Coding-Dev-Tools/SaaS-Churn-Predictor"
     },
+    "autoupdate": {
+        "url": "https://github.com/Coding-Dev-Tools/SaaS-Churn-Predictor/archive/refs/tags/v$version.tar.gz"
+    },
     "name": "saas-churn-predictor"
 }

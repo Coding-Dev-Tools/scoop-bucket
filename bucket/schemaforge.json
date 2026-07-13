@@ -11,5 +11,8 @@
     "checkver": {
         "github": "https://github.com/Coding-Dev-Tools/schemaforge"
     },
+    "autoupdate": {
+        "url": "https://github.com/Coding-Dev-Tools/schemaforge/archive/refs/tags/v$version.tar.gz"
+    },
     "name": "schemaforge"
 }
