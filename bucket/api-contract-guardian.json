@@ -11,5 +11,8 @@
     "bin": "api-contract-guardian.exe",
     "checkver": {
         "github": "https://github.com/Coding-Dev-Tools/api-contract-guardian"
+    },
+    "autoupdate": {
+        "url": "https://github.com/Coding-Dev-Tools/api-contract-guardian/archive/refs/tags/v$version.tar.gz"
     }
 }

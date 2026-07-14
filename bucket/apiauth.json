@@ -10,5 +10,9 @@
     "bin": "apiauth.exe",
     "checkver": {
         "github": "https://github.com/Coding-Dev-Tools/apiauth"
-    }
+    },
+    "autoupdate": {
+        "url": "https://github.com/Coding-Dev-Tools/apiauth/archive/refs/tags/v$version.tar.gz"
+    },
+    "name": "apiauth"
 }

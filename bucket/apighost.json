@@ -10,5 +10,9 @@
     "bin": "apighost.exe",
     "checkver": {
         "github": "https://github.com/Coding-Dev-Tools/apighost"
-    }
+    },
+    "autoupdate": {
+        "url": "https://github.com/Coding-Dev-Tools/apighost/archive/refs/tags/v$version.tar.gz"
+    },
+    "name": "apighost"
 }

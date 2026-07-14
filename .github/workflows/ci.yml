@@ -13,10 +13,55 @@ jobs:
       - uses: actions/checkout@v4
       - shell: pwsh
         run: |
-          Get-ChildItem bucket -Filter *.json | ForEach-Object {
-            Write-Host "Validating $($_.Name)"
-            Get-Content -Raw $_.FullName | ConvertFrom-Json | Out-Null
+          $ErrorActionPreference = 'Stop'
+
+          if (-not (Test-Path 'bucket')) {
+            Write-Host "::error::bucket/ directory is missing - refusing to report success without validating anything."
+            exit 1
           }
+
+          # An empty bucket must fail loudly: the old loop iterated zero files and
+          # exited green, so a bucket that lost all its manifests still 'passed'.
+          $manifests = @(Get-ChildItem 'bucket' -Filter *.json)
+          if ($manifests.Count -eq 0) {
+            Write-Host "::error::No manifests found in bucket/ - CI would otherwise pass green having validated nothing."
+            exit 1
+          }
+
+          # A manifest can be valid JSON yet still fail to install if it is missing
+          # the fields Scoop needs, so parsing alone is not sufficient. url/hash may
+          # live under architecture.<arch> instead of at the top level; accept either.
+          $topLevel = @('version', 'description', 'homepage', 'license')
+          $urlHash  = @('url', 'hash')
+          $problems = 0
+
+          foreach ($m in $manifests) {
+            Write-Host "Validating $($m.Name)"
+            try {
+              $json = Get-Content -Raw $m.FullName | ConvertFrom-Json
+            } catch {
+              Write-Host "::error file=bucket/$($m.Name)::Invalid JSON: $($_.Exception.Message)"
+              $problems++
+              continue
+            }
+            $names = @($json.PSObject.Properties.Name)
+            foreach ($key in $topLevel) {
+              if ($names -notcontains $key) {
+                Write-Host "::error file=bucket/$($m.Name)::Missing required field '$key'."
+                $problems++
+              }
+            }
+            $hasArch = $names -contains 'architecture'
+            foreach ($key in $urlHash) {
+              if (($names -notcontains $key) -and (-not $hasArch)) {
+                Write-Host "::error file=bucket/$($m.Name)::Missing required field '$key' (and no architecture block) - Scoop install will fail."
+                $problems++
+              }
+            }
+          }
+
+          Write-Host "Validated $($manifests.Count) manifest(s); $problems problem(s) found."
+          if ($problems -gt 0) { exit 1 }
 
   placeholder-hash-guard:
     runs-on: ubuntu-latest
@@ -24,8 +69,25 @@ jobs:
       - uses: actions/checkout@v4
       - name: Fail on placeholder hash
         run: |
-          if grep -rEl 'TODO|"hash": "0{64}"' bucket/; then
-            echo "::error::Manifest(s) above still contain a placeholder hash — installs will fail. Recompute from the real release tarball before merging."
+          set -euo pipefail
+          shopt -s nullglob
+          manifests=(bucket/*.json)
+          if [ ! -d bucket ] || [ ${#manifests[@]} -eq 0 ]; then
+            echo "::error::bucket/ has no manifests - refusing to pass silently."
             exit 1
           fi
-          echo "No placeholder hashes found."
+          if grep -rEl '(TODO|"hash":[[:space:]]*"0{64}"|"hash":[[:space:]]*"")' bucket/; then
+            echo "::error::Manifest(s) above still contain a placeholder/empty hash - installs will fail. Recompute from the real release tarball before merging."
+            exit 1
+          fi
+          echo "No placeholder hashes found in ${#manifests[@]} manifest(s)."
+
+  validate-python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Validate manifests (cross-platform)
+        run: python scripts/validate_manifests.py

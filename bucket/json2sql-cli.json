@@ -10,5 +10,9 @@
     "bin": "json2sql.exe",
     "checkver": {
         "github": "https://github.com/Coding-Dev-Tools/json2sql"
-    }
+    },
+    "autoupdate": {
+        "url": "https://github.com/Coding-Dev-Tools/json2sql/archive/refs/tags/v$version.tar.gz"
+    },
+    "name": "json2sql-cli"
 }

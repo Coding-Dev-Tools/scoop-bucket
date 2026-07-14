@@ -10,5 +10,9 @@
     "bin": "deploydiff.exe",
     "checkver": {
         "github": "https://github.com/Coding-Dev-Tools/deploydiff"
-    }
+    },
+    "autoupdate": {
+        "url": "https://github.com/Coding-Dev-Tools/deploydiff/archive/refs/tags/v$version.tar.gz"
+    },
+    "name": "deploydiff"
 }

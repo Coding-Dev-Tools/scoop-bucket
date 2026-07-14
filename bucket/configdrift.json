@@ -10,5 +10,9 @@
     "bin": "configdrift.exe",
     "checkver": {
         "github": "https://github.com/Coding-Dev-Tools/configdrift"
-    }
+    },
+    "autoupdate": {
+        "url": "https://github.com/Coding-Dev-Tools/configdrift/archive/refs/tags/v$version.tar.gz"
+    },
+    "name": "configdrift"
 }

@@ -10,5 +10,9 @@
     "bin": "deadcode.exe",
     "checkver": {
         "github": "https://github.com/Coding-Dev-Tools/deadcode"
-    }
+    },
+    "autoupdate": {
+        "url": "https://github.com/Coding-Dev-Tools/deadcode/archive/refs/tags/v$version.tar.gz"
+    },
+    "name": "deadcode"
 }

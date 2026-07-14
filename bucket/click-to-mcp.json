@@ -10,5 +10,9 @@
     "bin": "click-to-mcp.exe",
     "checkver": {
         "github": "https://github.com/Coding-Dev-Tools/click-to-mcp"
-    }
+    },
+    "autoupdate": {
+        "url": "https://github.com/Coding-Dev-Tools/click-to-mcp/archive/refs/tags/v$version.tar.gz"
+    },
+    "name": "click-to-mcp"
 }
