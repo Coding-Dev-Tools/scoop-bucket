@@ -2,4 +2,8 @@
 # Local opencode config
 .agents/
 
+# Python cache artifacts
+__pycache__/
+*.py[cod]
+
 AGENTS.md
