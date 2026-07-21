@@ -1,11 +1,11 @@
 {
-    "version": "0.1.1",
+    "version": "1.2.0",
     "description": "CLI tool for batch converting between data formats (CSV, JSON, YAML, Parquet, Avro, Protobuf) with streaming for large files",
     "homepage": "https://github.com/Coding-Dev-Tools/datamorph",
     "license": "MIT",
     "depends": "python",
-    "url": "https://github.com/Coding-Dev-Tools/datamorph/archive/refs/tags/v0.1.1.tar.gz",
-    "hash": "29fd37d02172b3a1994eb15f71d650d82e55ca9bea0459f0cff3a6a1bda6b0b9",
+    "url": "https://github.com/Coding-Dev-Tools/datamorph/archive/refs/tags/v1.2.0.tar.gz",
+    "hash": "ae3ce3938c0be458a427c0e3c224ab231d512ea3a3fb8b62d20dea958831fc97",
     "post_install": "pip install \"$dir\"",
     "bin": "datamorph.exe",
     "checkver": {
