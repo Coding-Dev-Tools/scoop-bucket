@@ -22,7 +22,7 @@ import os
 import re
 import sys
 
-REQUIRED_TOP = ["version", "description", "homepage", "license"]
+REQUIRED_TOP = ["name", "version", "description", "homepage", "license"]
 HEX64 = re.compile(r"^[0-9a-fA-F]{64}$")
 
 

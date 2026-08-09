@@ -83,5 +83,16 @@ class ManifestValidationTests(unittest.TestCase):
             self.assertEqual(0, validate_manifests.main(["validate_manifests.py", str(bucket)]))
 
 
+    def test_missing_name_field_is_rejected(self):
+        """AGENTS.md requires 'name' in every manifest."""
+        manifest = valid_manifest()
+        del manifest["name"]
+        problems = validate_manifests.problems_for("no-name.json", manifest)
+        self.assertIn(
+            "no-name.json: missing required field 'name'",
+            problems,
+        )
+
+
 if __name__ == "__main__":
     unittest.main()
