@@ -93,6 +93,26 @@ class ManifestValidationTests(unittest.TestCase):
             problems,
         )
 
+    def test_missing_depends_field_is_rejected(self):
+        """AGENTS.md requires 'depends' in every manifest."""
+        manifest = valid_manifest()
+        del manifest["depends"]
+        problems = validate_manifests.problems_for("no-depends.json", manifest)
+        self.assertIn(
+            "no-depends.json: missing required field 'depends'",
+            problems,
+        )
+
+    def test_missing_post_install_field_is_rejected(self):
+        """AGENTS.md requires 'post_install' in every manifest."""
+        manifest = valid_manifest()
+        del manifest["post_install"]
+        problems = validate_manifests.problems_for("no-post-install.json", manifest)
+        self.assertIn(
+            "no-post-install.json: missing required field 'post_install'",
+            problems,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
