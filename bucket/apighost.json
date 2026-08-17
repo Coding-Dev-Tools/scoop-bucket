@@ -5,7 +5,7 @@
     "license": "MIT",
     "depends": "python",
     "url": "https://github.com/Coding-Dev-Tools/apighost/archive/refs/tags/v0.2.0.tar.gz",
-    "hash": "b4d8cddb7f61a4cce270f2ed46016e96cec6a85a05adc36bd9f237da2094180e",
+    "hash": "953d5995c710528fcf552fdaab6a04df22c950828cc6f72a936ac080c274021d",
     "post_install": "pip install \"$dir\"",
     "bin": "apighost.exe",
     "checkver": {
