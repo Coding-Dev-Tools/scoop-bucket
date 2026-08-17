@@ -5,7 +5,7 @@
     "license": "MIT",
     "depends": "python",
     "url": "https://github.com/Coding-Dev-Tools/click-to-mcp/archive/refs/tags/v0.5.0.tar.gz",
-    "hash": "ef946c5a1660df147dcc65548d3dffa364b50cd8f903ab8696a51b5be6aeb26e",
+    "hash": "14dfa3fc743cfd40451d91b87bbc0a5c354dca352e9454c409efb44f5a693c28",
     "post_install": "pip install \"$dir\"",
     "bin": "click-to-mcp.exe",
     "checkver": {
