@@ -6,7 +6,7 @@
     "license": "MIT",
     "depends": "python",
     "url": "https://github.com/Coding-Dev-Tools/api-contract-guardian/archive/refs/tags/v0.1.0.tar.gz",
-    "hash": "df78aab4bf1158411a059b3554c0791a1fcd06f6fc0e380725cdfcdbe131e01c",
+    "hash": "edd9eaa56f97181e052ef3932aad29f1ef79aaf45b5afe0df089982f779177ba",
     "post_install": "pip install \"$dir\"",
     "bin": "api-contract-guardian.exe",
     "checkver": {

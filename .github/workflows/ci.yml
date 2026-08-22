@@ -31,7 +31,7 @@ jobs:
           # A manifest can be valid JSON yet still fail to install if it is missing
           # the fields Scoop needs, so parsing alone is not sufficient. url/hash may
           # live under architecture.<arch> instead of at the top level; accept either.
-          $topLevel = @('version', 'description', 'homepage', 'license')
+          $topLevel = @('name', 'version', 'description', 'homepage', 'license', 'depends', 'post_install')
           $urlHash  = @('url', 'hash')
           $problems = 0
 
