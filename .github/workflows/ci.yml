@@ -91,3 +91,15 @@ jobs:
           python-version: '3.x'
       - name: Validate manifests (cross-platform)
         run: python scripts/validate_manifests.py
+
+  version-drift:
+    # Compares each manifest's version against its upstream repo's tags.
+    # json2sql-cli drifted this way before (manifest 0.1.1 vs released 0.1.0)
+    # and only a manual audit caught it; make that check continuous.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python scripts/check_version_drift.py
