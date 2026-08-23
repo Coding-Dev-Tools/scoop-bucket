@@ -14,7 +14,6 @@ For each manifest:
   * compares the newest tag (v-prefix stripped) with the manifest version
 
 Exit code 0 = all match; 1 = at least one drifted or unreachable repo.
-Use --checkver-only to limit checks to offline checkver/homepage consistency.
 """
 import argparse
 import glob
