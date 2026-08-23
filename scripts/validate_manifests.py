@@ -89,6 +89,23 @@ def problems_for(rel, data):
                     f"{rel}: version '{version}' does not match url tag '{tag}'"
                 )
 
+    # checkver.github must point at the same repo as homepage; a copy-paste
+    # pointing at another owned repo makes `scoop checkver` compare against
+    # the wrong project's releases and silently never (or wrongly) update.
+    cv = data.get("checkver")
+    cv_repo = None
+    if isinstance(cv, dict):
+        gh = cv.get("github")
+        if isinstance(gh, str) and "github.com/" in gh:
+            cv_repo = gh.split("github.com/", 1)[1].strip("/").lower()
+    hp = data.get("homepage")
+    if isinstance(hp, str) and "github.com/" in hp and cv_repo is not None:
+        hp_repo = hp.split("github.com/", 1)[1].strip("/").lower()
+        if cv_repo != hp_repo:
+            probs.append(
+                f"{rel}: checkver.github '{cv}' points at a different repo than homepage '{hp}'"
+            )
+
     # autoupdate must accompany checkver so `scoop update` can self-apply new
     # versions; a manifest with checkver but no autoupdate silently never updates.
     if "checkver" in data and "autoupdate" not in data:
