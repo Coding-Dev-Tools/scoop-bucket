@@ -88,6 +88,7 @@ def main(argv=None):
         if not repo:
             problems.append(f"{rel}: homepage is not a github.com repo URL")
             continue
+        url = f"{API_BASE}/{repo}/tags"
         try:
             latest = newest_version_tag(fetch_tags(repo))
         except Exception as exc:
@@ -95,13 +96,11 @@ def main(argv=None):
             # a 404 (e.g. private repo) or network failure would otherwise make
             # the check silently blind for that manifest.
             status = getattr(exc, "code", None)
-            url = f"{API_BASE}/{repo}/tags"
             reason = f"HTTP {status}" if isinstance(status, int) else f"{type(exc).__name__}: {exc}"
             skipped.append((rel, url, reason))
             print(f"::warning::{rel}: SKIPPED upstream {url} ({reason})")
             continue
         if latest is None:
-            url = f"{API_BASE}/{repo}/tags"
             skipped.append((rel, url, "no version tags published"))
             print(f"::warning::{rel}: SKIPPED upstream {url} (no version tags published)")
             continue
