@@ -13,7 +13,13 @@ For each manifest:
     publishing a Release object)
   * compares the newest tag (v-prefix stripped) with the manifest version
 
-Exit code 0 = all match; 1 = at least one drifted or unreachable repo.
+Exit code 0 = every reachable manifest matches its upstream; 1 = at least one
+drifted or invalid manifest. Unreachable upstreams are warned, never fatal.
+
+Every skipped/unreachable upstream (HTTP 404, other non-200s, network errors,
+tag-less repos) emits an explicit ::warning:: line naming the manifest, the
+queried URL and the skip reason, and the run ends with a one-line summary
+tallying verified vs warned/skipped manifests. Skips never change the exit code.
 """
 import argparse
 import glob
@@ -70,6 +76,7 @@ def main(argv=None):
         return 1
 
     problems = []
+    skipped = []  # (manifest rel path, upstream URL, reason) for every non-queried upstream
     for path in manifests:
         rel = "bucket/" + os.path.basename(path)
         try:
@@ -84,15 +91,19 @@ def main(argv=None):
         try:
             latest = newest_version_tag(fetch_tags(repo))
         except Exception as exc:
-            # 404 on a private/unreleased repo is informational, not drift.
+            # Unreachable upstreams are never drift, but they must be loud:
+            # a 404 (e.g. private repo) or network failure would otherwise make
+            # the check silently blind for that manifest.
             status = getattr(exc, "code", None)
-            if status == 404:
-                print(f"{rel}: upstream {repo} unreachable (404) - skipped")
-                continue
-            problems.append(f"{rel}: could not query tags for {repo}: {exc}")
+            url = f"{API_BASE}/{repo}/tags"
+            reason = f"HTTP {status}" if isinstance(status, int) else f"{type(exc).__name__}: {exc}"
+            skipped.append((rel, url, reason))
+            print(f"::warning::{rel}: SKIPPED upstream {url} ({reason})")
             continue
         if latest is None:
-            print(f"{rel}: upstream {repo} has no version tags yet - skipped")
+            url = f"{API_BASE}/{repo}/tags"
+            skipped.append((rel, url, "no version tags published"))
+            print(f"::warning::{rel}: SKIPPED upstream {url} (no version tags published)")
             continue
         version = data.get("version")
         if version != latest:
@@ -100,12 +111,23 @@ def main(argv=None):
         else:
             print(f"{rel}: {version} == upstream {repo} ok")
 
+    checked = len(manifests)
     if problems:
         print(f"Version drift check FAILED; {len(problems)} problem(s):")
         for p in problems:
             print(f"::error::{p}")
+        if skipped:
+            names = ", ".join(rel for rel, _, _ in skipped)
+            print(f"::warning::skipped upstreams ({len(skipped)}/{checked}): {names}")
         return 1
-    print(f"Version drift check passed for {len(manifests)} manifest(s).")
+    if skipped:
+        names = ", ".join(rel for rel, _, _ in skipped)
+        print(
+            f"Version drift check passed for {checked - len(skipped)}/{checked} manifest(s); "
+            f"WARNING: {len(skipped)} upstream(s) skipped/unreachable: {names}"
+        )
+    else:
+        print(f"Version drift check passed for {len(manifests)} manifest(s).")
     return 0
 
 
