@@ -80,7 +80,8 @@ def main(argv=None):
     for path in manifests:
         rel = "bucket/" + os.path.basename(path)
         try:
-            data = json.load(open(path, encoding="utf-8"))
+            with open(path, encoding="utf-8") as fh:
+                data = json.load(fh)
         except Exception as exc:
             problems.append(f"{rel}: invalid JSON: {exc}")
             continue
