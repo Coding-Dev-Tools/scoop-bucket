@@ -48,6 +48,25 @@ class NewestVersionTagTests(unittest.TestCase):
         self.assertEqual(drift.newest_version_tag(["v1.2.3"]), "1.2.3")
 
 
+class RepoFromManifestTests(unittest.TestCase):
+    def test_prefers_checkver_github(self):
+        data = {
+            "homepage": "https://github.com/owner/repo-homepage",
+            "checkver": {"github": "https://github.com/owner/repo-checkver"},
+        }
+        self.assertEqual(drift.repo_from_manifest(data), "owner/repo-checkver")
+
+    def test_falls_back_to_homepage(self):
+        data = {"homepage": "https://github.com/owner/repo-homepage"}
+        self.assertEqual(drift.repo_from_manifest(data), "owner/repo-homepage")
+
+    def test_none_when_no_github_url(self):
+        data = {"homepage": "https://example.invalid/tool"}
+        self.assertIsNone(drift.repo_from_manifest(data))
+        data = {}
+        self.assertIsNone(drift.repo_from_manifest(data))
+
+
 class CheckverHomepageConsistencyTests(unittest.TestCase):
     BASE = {
         "name": "x",
